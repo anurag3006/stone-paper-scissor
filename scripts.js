@@ -6,8 +6,8 @@ function getComputerChoice() {
   return ans;
 }
 
-var computerSelection = getComputerChoice();
-var playerSelection = prompt("type your choice");
+// var computerSelection = getComputerChoice();
+// var playerSelection = prompt("type your choice");
 
 // function for single round of game
 
@@ -67,7 +67,7 @@ function playRound(playerSelection, computerSelection) {
   return result;
 }
 
-console.log("comp : "+computerSelection);
+
 
 // let r = playRound(playerSelection, computerSelection);
 // console.log(r);
@@ -77,9 +77,14 @@ function game(playRound, NumberOfTimes) {
   var score = 0; // final score
 
   for (let i = 0; i < NumberOfTimes; i++) {
+
+    var computerSelection = getComputerChoice();
+    var playerSelection = prompt("type your choice");
+
     let r = playRound(playerSelection, computerSelection);
+    console.log(playerSelection,computerSelection);  //for better understanding
     if (r.includes("Won")) score++;
-    else if (r.includes("Lost")) score--;
+    // else if (r.includes("Lost")) score--;
   }
   return score;
 }
