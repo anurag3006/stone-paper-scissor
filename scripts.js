@@ -24,6 +24,10 @@ rock.addEventListener("click",myFunction);
 paper.addEventListener("click",myFunction);
 scissor.addEventListener("click",myFunction);
 
+// Showing the selections
+const computer = document.querySelector("#computer");
+const person = document.querySelector("#person");
+
 // showing result on page
 const r = document.querySelector("#final_score");
 
@@ -32,11 +36,13 @@ var playerSelection = "";
 function myFunction(){
   // console.log(this.className);
   if(rounds === 0) {
-    r.innerHTML = `${score}`;
+    r.innerHTML = `Result: ${score}`;
     return;
   }
   playerSelection = this.className;
+  person.innerHTML = "Your Selection : " + playerSelection;
   computerSelection = getComputerChoice();
+  computer.innerHTML = "Computer Selection : " + computerSelection;
   console.log(playRound(playerSelection, computerSelection));
   rounds--;
   
@@ -112,6 +118,8 @@ restart.addEventListener("click",()=>{
   rounds = 5;
   score = 0;
   r.innerHTML = "Result";
+  computer.innerHTML = "Computer Selection :"
+  person.innerHTML = "Your Selection :"
   return;
 })
 
