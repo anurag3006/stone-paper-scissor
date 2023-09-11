@@ -6,8 +6,43 @@ function getComputerChoice() {
   return ans;
 }
 
-// var computerSelection = getComputerChoice();
+// Number of rounds the game will be played;
+var rounds = 5;
+
+// final score after all rounds;
+var score = 0;
+
 // var playerSelection = prompt("type your choice");
+
+// push the button and select the player selection
+const rock = document.querySelector(".rock");
+const paper = document.querySelector(".paper");
+const scissor = document.querySelector(".scissor");
+
+
+rock.addEventListener("click",myFunction);
+paper.addEventListener("click",myFunction);
+scissor.addEventListener("click",myFunction);
+
+// showing result on page
+const r = document.querySelector("#final_score");
+
+
+var playerSelection = "";
+function myFunction(){
+  // console.log(this.className);
+  if(rounds === 0) {
+    r.innerHTML = `${score}`;
+    return;
+  }
+  playerSelection = this.className;
+  computerSelection = getComputerChoice();
+  console.log(playRound(playerSelection, computerSelection));
+  rounds--;
+  
+}
+
+// console.log(playerSelection);
 
 // function for single round of game
 
@@ -26,6 +61,7 @@ function playRound(playerSelection, computerSelection) {
       case "SCISSOR":
         result = `You Won !!
                           ${computerSelection} does not beats ${playerSelection}.`;
+        score++;
         break;
 
       default:
@@ -41,6 +77,7 @@ function playRound(playerSelection, computerSelection) {
       case "ROCK":
         result = `You Won !!
                           ${computerSelection} does not beats ${playerSelection}.`;
+        score++;
         break;
 
       default:
@@ -56,6 +93,7 @@ function playRound(playerSelection, computerSelection) {
       case "PAPER":
         result = `You Won !!
                           ${computerSelection} does not beats ${playerSelection}.`;
+        score++;
         break;
 
       default:
@@ -67,7 +105,15 @@ function playRound(playerSelection, computerSelection) {
   return result;
 }
 
+// RESTARTING THE GAME
+const restart = document.querySelector("#restart")
 
+restart.addEventListener("click",()=>{
+  rounds = 5;
+  score = 0;
+  r.innerHTML = "Result";
+  return;
+})
 
 // let r = playRound(playerSelection, computerSelection);
 // console.log(r);
@@ -79,14 +125,16 @@ function game(playRound, NumberOfTimes) {
   for (let i = 0; i < NumberOfTimes; i++) {
 
     var computerSelection = getComputerChoice();
-    var playerSelection = prompt("type your choice");
+    // var playerSelection = prompt("type your choice");
+    // var playerSelection = myFunction;
 
     let r = playRound(playerSelection, computerSelection);
-    console.log(playerSelection,computerSelection);  //for better understanding
+    console.log(playerSelection,computerSelection,r);  //for better understanding
     if (r.includes("Won")) score++;
     // else if (r.includes("Lost")) score--;
   }
   return score;
 }
 
-console.log(game(playRound,3));
+// console.log(game(playRound,3));
+
