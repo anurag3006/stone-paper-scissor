@@ -45,7 +45,6 @@ function myFunction(){
   computer.innerHTML = "Computer Selection : " + computerSelection;
   console.log(playRound(playerSelection, computerSelection));
   rounds--;
-  
 }
 
 // console.log(playerSelection);
