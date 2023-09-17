@@ -31,22 +31,34 @@ const person = document.querySelector("#person");
 // showing result on page
 const r = document.querySelector("#final_score");
 
+// arrays to store the selection
+var playerArray = [];
+var computerArray = [];
 
 var playerSelection = "";
 function myFunction(){
   // console.log(this.className);
-  if(rounds === 0) {
+  rounds--;
+  if(rounds === -1) {
     r.innerHTML = `Result: ${score}`;
+    retartgameWithScore(score);
     return;
   }
   playerSelection = this.className;
-  person.innerHTML = "Your Selection : " + playerSelection;
+  playerArray.push(playerSelection);
+  person.innerHTML = "&nbsp&nbsp&nbsp&nbspHuman Selection : " + playerArray;
   computerSelection = getComputerChoice();
-  computer.innerHTML = "Computer Selection : " + computerSelection;
+  computerArray.push(computerSelection);
+  computer.innerHTML = "Computer Selection : " + computerArray;
   console.log(playRound(playerSelection, computerSelection));
-  rounds--;
+  console.log(rounds);
+  // addSelection(playerSelection,computerSelection);
+  
 }
-
+// add human and computer selection on the dom one by one
+function addSelection(playerSelection, computerSelection){
+  person.innerHTML = person.innerHTML + playerSelection + computerSelection;
+}
 // console.log(playerSelection);
 
 // function for single round of game
@@ -112,15 +124,28 @@ function playRound(playerSelection, computerSelection) {
 
 // RESTARTING THE GAME
 const restart = document.querySelector("#restart")
-
-restart.addEventListener("click",()=>{
+function retartgame(){
   rounds = 5;
   score = 0;
   r.innerHTML = "Result";
-  computer.innerHTML = "Computer Selection :"
-  person.innerHTML = "Your Selection :"
+  computer.innerHTML = "Computer Selection :";
+  person.innerHTML = "&nbsp&nbsp&nbsp&nbspHuman Selection : ";
+  playerArray = [];
+  computerArray = [];
   return;
-})
+}
+function retartgameWithScore(result){
+  rounds = 5;
+  // score = 0;
+  r.innerHTML = `Result: ${score}`;
+  computer.innerHTML = "Computer Selection :";
+  person.innerHTML = "&nbsp&nbsp&nbsp&nbspHuman Selection : ";
+  playerArray = [];
+  computerArray = [];
+  return;
+}
+
+restart.addEventListener("click",retartgame)
 
 // let r = playRound(playerSelection, computerSelection);
 // console.log(r);

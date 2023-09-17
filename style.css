@@ -8,18 +8,41 @@
     align-items: center;
 }
 
+/* Texts */
+
+#page_title{
+    font-size: 60px;
+    font-weight: bold;
+}
+
+#game_title{
+    font-size: 40px;
+    font-weight: lighter;
+}
+
+
 /* Adding icons in place of buttons */
 
-.rock,.paper,.scissor{
+.rock,.paper,.scissor,#restart{
     width: 100px;
     height: 100px;
+
+    /* change size when hovered */
+    transition: all 0.1s ease-in-out; 
+    cursor: pointer;
+}
+
+/* change size when hovered */
+
+.rock:hover,.paper:hover,.scissor:hover,#restart:hover{
+    transform: scale(0.8);
 }
 
 /* Arranging the button/icons */
 .btns{
     display: flex;
     justify-content: space-around;
-    width: 500px;
+    width: 700px;
 }
 
 /* Arranging the selections */
