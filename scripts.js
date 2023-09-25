@@ -7,10 +7,11 @@ function getComputerChoice() {
 }
 
 // Number of rounds the game will be played;
-var rounds = 5;
+// var rounds = 5;
 
 // final score after all rounds;
-var score = 0;
+var Compscore = 0;
+var Humanscore = 0;
 
 // var playerSelection = prompt("type your choice");
 
@@ -38,10 +39,15 @@ var computerArray = [];
 var playerSelection = "";
 function myFunction(){
   // console.log(this.className);
-  rounds--;
-  if(rounds === -1) {
-    r.innerHTML = `Result: ${score}`;
-    retartgameWithScore(score);
+  // rounds--;
+  if(Compscore === 5) {
+    r.innerHTML = `Comp scored ${Compscore} first`;
+    // retartgame();
+    return;
+  }
+  if(Humanscore === 5) {
+    r.innerHTML = `You scored ${Humanscore} first`;
+    // retartgame();
     return;
   }
   playerSelection = this.className;
@@ -51,7 +57,7 @@ function myFunction(){
   computerArray.push(computerSelection);
   computer.innerHTML = "Computer Selection : " + computerArray;
   console.log(playRound(playerSelection, computerSelection));
-  console.log(rounds);
+  console.log(Compscore,Humanscore);
   // addSelection(playerSelection,computerSelection);
   
 }
@@ -74,11 +80,12 @@ function playRound(playerSelection, computerSelection) {
       case "PAPER":
         result = `You Lost !!
                           ${computerSelection} beats ${playerSelection}.`;
+        Compscore++;
         break;
       case "SCISSOR":
         result = `You Won !!
                           ${computerSelection} does not beats ${playerSelection}.`;
-        score++;
+        Humanscore++;
         break;
 
       default:
@@ -90,11 +97,12 @@ function playRound(playerSelection, computerSelection) {
       case "SCISSOR":
         result = `You Lost !!
                           ${computerSelection} beats ${playerSelection}.`;
+        Compscore++;
         break;
       case "ROCK":
         result = `You Won !!
                           ${computerSelection} does not beats ${playerSelection}.`;
-        score++;
+        Humanscore++;
         break;
 
       default:
@@ -106,11 +114,12 @@ function playRound(playerSelection, computerSelection) {
       case "ROCK":
         result = `You Lost !!
                           ${computerSelection} beats ${playerSelection}.`;
+        Compscore++;
         break;
       case "PAPER":
         result = `You Won !!
                           ${computerSelection} does not beats ${playerSelection}.`;
-        score++;
+        Humanscore++;
         break;
 
       default:
@@ -125,8 +134,9 @@ function playRound(playerSelection, computerSelection) {
 // RESTARTING THE GAME
 const restart = document.querySelector("#restart")
 function retartgame(){
-  rounds = 5;
-  score = 0;
+  //rounds = 5;
+  Humanscore = 0;
+  Compscore = 0;
   r.innerHTML = "Result";
   computer.innerHTML = "Computer Selection :";
   person.innerHTML = "&nbsp&nbsp&nbsp&nbspHuman Selection : ";
